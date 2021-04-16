@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container rounded border p-3 mt-5 shadow-lg bg-light bg-gradient">
+        <form action="/user/create" method="post" class="row">
+            <div class="col-lg-6">
+                <label for="inputFistName" class="form-label">First Name</label>
+                <input id="inputFirstName" name="firstname" type="text" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="inputLastName" class="form-label">Last Name</label>
+                <input id="inputLastName" name="lastname" type="text" class="form-control">
+            </div>
+            <div class="col-12 mt-2">
+                <label for="inlineRadio1">Gender</label>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="gender" type="radio" id="inlineRadio1" value="male">
+                    <label class="form-check-label" for="inlineCheckbox1">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="gender" type="radio" id="inlineRadio1" value="female">
+                    <label class="form-check-label" for="inlineCheckbox1">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="gender" type="radio" id="inlineRadio1" value="non-binary">
+                    <label class="form-check-label" for="inlineCheckbox1">Non-Binary</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="gender" type="radio" id="inlineRadio1" value="Prefer not to answer">
+                    <label class="form-check-label" for="inlineCheckbox1">Prefer not to answer</label>
+                </div>
+            </div>
+            <div class="col-12 mt-2">
+                <label for="inlineCheckbox1">Race/Ethnicity</label>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="race" type="checkbox" id="inlineCheckbox1" value="White">
+                    <label class="form-check-label" for="inlineCheckbox1">White</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="race" type="checkbox" id="inlineCheckbox1" value="Black/African American">
+                    <label class="form-check-label" for="inlineCheckbox1">Black/African American</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="race" type="checkbox" id="inlineCheckbox1" value="Asian">
+                    <label class="form-check-label" for="inlineCheckbox1">Asian</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="race" type="checkbox" id="inlineCheckbox1" value="American Indian or Alaskan Native">
+                    <label class="form-check-label" for="inlineCheckbox1">American Indian or Alaskan Native</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" name="race" type="checkbox" id="inlineCheckbox1" value="Native Hawaiian or Other pacific islander">
+                    <label class="form-check-label" for="inlineCheckbox1">Native Hawaiian or Other pacific islander</label>
+                </div>
+            </div>
+            <div class="col-md-6 mt-2">
+                <label for="inputLocation" class="form-label">Dojo Location</label>
+                <select id="inputLocation" name="location" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="Arlington, VA">Arlington, VA</option>
+                    <option value="Bellevue, WA">Bellevue, WA</option>
+                    <option value="Boise, ID">Boise, ID</option>
+                    <option value="Chicago, IL">Chicago, IL</option>
+                    <option value="Dallas, TX">Dallas, TX</option>
+                    <option value="Los Angeles, CA">Los Angeles, CA</option>
+                    <option value="Oakland, CA">Oakland, CA</option>
+                    <option value="Orange County, CA">Orange County, CA</option>
+                    <option value="Silicon Valley, CA">Silicon Valley, CA</option>
+                    <option value="Tulsa, OK">Tulsa, OK</option>
+                    <option value="Online">Online</option>
+                </select>
+            </div>
+            <div class="col-md-6 mt-2">
+                <label for="inputFavorite" class="form-label">Favorite Language</label>
+                <select name="favorite" id="inputFavorite" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="Python">Python</option>
+                    <option value="HTML5">HTML5</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C#">C#</option>
+                    <option value="CSS">CSS</option>
+                </select>
+            </div>
+            <div class="col-lg-12 mt-2">
+                <label for="inputComment" class="form-label">Comment (optional)</label>
+                <textarea class="form-control" name="comment" id="inputComment" rows="5"></textarea>
+            </div>
+            <div class="col-12 mt-2">
+                <input type="submit" value="Submit Info" class="btn btn-primary">
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="fs-6 text-danger mb-0">* {{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
